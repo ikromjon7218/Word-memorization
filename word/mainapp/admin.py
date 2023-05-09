@@ -2,6 +2,7 @@ from django.contrib import admin
 from .models import *
 
 admin.site.register(Book)
+admin.site.register(Amount)
 # admin.site.register(Word)
 # admin.site.register(Soz)
 
@@ -21,4 +22,4 @@ class SozAdmin(admin.ModelAdmin):
     list_editable = ('name',)
     list_filter = ('word__unit', "word__book")
     list_per_page = 100
-    search_fields = 'id', 'name'
+    search_fields = 'id', 'name', 'word__name'

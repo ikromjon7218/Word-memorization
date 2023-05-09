@@ -448,8 +448,12 @@
 				<div class="row justify-content-center pb-5">
 				
 					<div class="col-12 pt-1">
-						<p class="mb-4 pb-2"><h2 style="color: #da2c4d;"   >To suit your taste: </h2></p>
-                        <h1><form action="/query_essential_1/" method="post">{% csrf_token %}
+						{% if success %}
+						<p class="mb-4 pb-2"><h2 style="color: #da2c4d;">To suit your taste: </h2></p>
+                        {% else %}
+						<p class="mb-4 pb-2"><h1 style="color: #ff4668;">{{message}}</h1></p>
+						{% endif %}
+						<h1><form action="/query_essential_1/" method="post">{% csrf_token %}
                             <label style="color: rgb(20, 235, 0);">From: </label>
                             <input type="number" name="from_unit" placeholder="Unit number..." value=1>
                             <label style="color: rgb(20, 235, 0);">units to: </label>
@@ -457,7 +461,7 @@
                             <label style="color: rgb(20, 235, 0);">units.</label>
                         <br><br>
                             <label style="color: rgb(20, 235, 0);">Number of tests: </label>
-                            <input type="number" name="amount" placeholder="amount..." value=25>
+                            <input type="number" name="amount" placeholder="amount..." value=5>
 
                         </div>
                         
@@ -472,7 +476,8 @@
                             </label>		
                         </div>
 
-                                <button style="color: rgb(42, 0, 156); padding: 20px 50px;"><h1>START</h1></button>
+                                <button type="submit" style="color: rgb(42, 0, 156); padding: 20px 50px;"><h1>START</h1></button>
+								
                 </form></h1>     
 
 					</div>

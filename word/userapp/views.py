@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from .forms import *
 import urllib.parse
 from django.db import IntegrityError
-
+from mainapp.models import Profil
 def register(request):
     # /register/?name=Ibrohimov&gender=male&username=acer&year_of_birth=2007&password=salomsalom
     url = request.get_full_path()  # current URL of the page
@@ -24,14 +24,15 @@ def register(request):
                                   year_of_birth=year_of_birth1,
                                   user=us)
             login(request, us)
-            return redirect('/homepage/')
+
+            return redirect('/home_page/')
         except IntegrityError:
             return render(request, 'sigin/index.html', {'error': 'Username already exists.'})
     elif username1:
         us = authenticate(request, username=username1, password=password1)
         if us:
             login(request, us)
-            return redirect('/homepage/')
+            return redirect('/home_page/')
     return render(request, 'sigin/index.html')
 
 def logoutview(request):
